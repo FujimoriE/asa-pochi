@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, useParams } from "next/navigation" 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -13,8 +13,9 @@ import Link from "next/link"
 import type { Poll } from "@/lib/db"
 import { storage } from "@/lib/local-storage"
 
-export default function VotingPage({ params }: { params: { pollId: string } }) {
-  const { pollId } = params
+export default function VotingPage() {
+  const params = useParams()
+  const pollId = params.pollId as string
   const router = useRouter()
   const [poll, setPoll] = useState<Poll | null>(null)
   const [voterName, setVoterName] = useState("")

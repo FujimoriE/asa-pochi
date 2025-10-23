@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { useParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowLeft, RefreshCw } from "lucide-react"
@@ -15,8 +16,9 @@ const CHOICE_COLORS = [
   "#FEAA02", // Choice 4: Yellow
 ]
 
-export default function ResultsPage({ params }: { params: { pollId: string } }) {
-  const { pollId } = params
+export default function ResultsPage() {
+  const params = useParams()
+  const pollId = params.pollId as string
   const [poll, setPoll] = useState<Poll | null>(null)
   const [votes, setVotes] = useState<Vote[]>([])
   const [isLoading, setIsLoading] = useState(true)
